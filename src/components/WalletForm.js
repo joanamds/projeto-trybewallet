@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { actionFetchCurrentCurrency } from '../redux/actions';
 
 class WalletForm extends Component {
+  async componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(await actionFetchCurrentCurrency());
+  }
+
   render() {
+    const { currencies } = this.props;
     return (
       <>
         <form>
@@ -26,8 +35,9 @@ class WalletForm extends Component {
         <label htmlFor="currency">
           Moeda da despesa
           <select data-testid="currency-input" name="currency">
-            <option>Currency 1</option>
-            {/* terei que fazer a requisição da API para ter acesso as moedas que serão como opção, farei um map ou foreach para criar um select para cada moeda do array currencies atualizado no state através da action walletForm */}
+            {
+              currencies.map((currency) => <option key={ currency }>{ currency }</option>)
+            }
           </select>
         </label>
         <label htmlFor="method">
@@ -53,4 +63,13 @@ class WalletForm extends Component {
   }
 }
 
-export default WalletForm;
+const mapStateToProps = (state) => ({
+  currencies: state.wallet.currencies,
+});
+
+WalletForm.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+export default connect(mapStateToProps)(WalletForm);

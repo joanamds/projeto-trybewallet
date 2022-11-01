@@ -13,10 +13,10 @@ const wallet = (state = INITIAL_STATE, action) => {
   case WALLET_FORM:
     return {
       ...state,
-      currencies: action.payload.currencies,
-      expenses: action.payload.expenses,
-      editor: action.payload.editor,
-      idToEdit: action.payload.idToEdit,
+      currencies: action.currencies,
+      expenses: action.expenses,
+      editor: action.editor,
+      idToEdit: action.idToEdit,
     };
   default:
     return state;
