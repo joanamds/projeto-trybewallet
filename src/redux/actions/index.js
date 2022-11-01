@@ -25,7 +25,9 @@ export const expenseForm = (payload) => ({
 const fetchCurrentCurrency = async (dispatch) => {
   try {
     const currentCurrency = await getCurrentCurrency();
-    dispatch(fetchCurrency(currentCurrency));
+    const arrayCurrency = Object.keys(currentCurrency);
+    const currencies = arrayCurrency.filter((currency) => currency !== 'USDT');
+    dispatch(fetchCurrency(currencies));
   } catch (error) {
     console.log(error);
   }
