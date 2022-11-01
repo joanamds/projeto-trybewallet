@@ -1,4 +1,4 @@
-import { WALLET_FORM } from '../actions';
+import { FETCH_CURRENCY, EXPENSE_FORM } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -10,13 +10,15 @@ const INITIAL_STATE = {
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case WALLET_FORM:
+  case FETCH_CURRENCY:
     return {
       ...state,
       currencies: action.currencies,
+    };
+  case EXPENSE_FORM:
+    return {
+      ...state,
       expenses: action.expenses,
-      editor: action.editor,
-      idToEdit: action.idToEdit,
     };
   default:
     return state;
