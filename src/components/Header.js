@@ -12,8 +12,22 @@ class Header extends Component {
   }
 
   render() {
-    const { email, expenses } = this.props;
-    console.log(expenses);
+    const { email } = this.props;
+    const { expenses } = this.props;
+    const getExpenses = [...expenses];
+
+    const getActualCurrency = getExpenses.map((expense) => {
+      const { exchangeRates } = expense;
+      const getValues = Object.values(exchangeRates);
+      const getCurrency = getValues.find((value) => value.code === expense.currency);
+      const currencyValue = Number(getCurrency.ask);
+      const value = expense.value * currencyValue;
+      const finalValue = value.toFixed(2);
+      return Number(finalValue);
+    });
+
+    console.log(getActualCurrency);
+
     const { total } = this.state;
     return (
       <>
