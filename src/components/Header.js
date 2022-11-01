@@ -12,7 +12,8 @@ class Header extends Component {
   }
 
   render() {
-    const { email } = this.props;
+    const { email, expenses } = this.props;
+    console.log(expenses);
     const { total } = this.state;
     return (
       <>
@@ -36,6 +37,7 @@ Header.propTypes = {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  expenses: state.wallet.expenses,
 });
 
 export default connect(mapStateToProps)(Header);

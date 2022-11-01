@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { actionFetchCurrentCurrency, expenseForm } from '../redux/actions';
+import getCurrentCurrency from '../services/economyAPI';
 
 class WalletForm extends Component {
   constructor() {
     super();
 
     this.state = {
+      id: 0,
       value: '',
       description: '',
-      currency: '',
-      method: '',
-      tag: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+      exchangeRates: '',
     };
   }
 
@@ -26,26 +29,39 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (event) => {
-    const { dispatch } = this.props;
+  handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(expenseForm(this.state));
+    const { dispatch } = this.props;
+    const actualCurrency = await getCurrentCurrency();
+    this.setState((prevState) => ({
+      id: prevState.id + 1,
+      exchangeRates: actualCurrency,
+    }), () => {
+      dispatch(expenseForm(this.state));
+      this.setState({
+        value: '',
+        description: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
+      });
+    });
   };
 
   render() {
     const { currencies } = this.props;
-    const { expense, description, currency, method, tag } = this.state;
+    const { value, description, currency, method, tag } = this.state;
     return (
       <>
         <form>
           Formulário de despesa
         </form>
-        <label htmlFor="expense-value">
+        <label htmlFor="value">
           Valor da despesa:
           <input
             onChange={ this.handleChange }
-            value={ expense }
-            name="expense"
+            value={ value }
+            name="value"
             type="number"
             data-testid="value-input"
           />
