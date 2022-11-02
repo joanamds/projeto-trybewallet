@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 class Header extends Component {
   totalExpenses = () => {
     const { expenses } = this.props;
-    console.log(expenses);
     const getExpenses = [...expenses];
     const getTotalValue = getExpenses.map((expense) => {
       const { exchangeRates } = expense;
