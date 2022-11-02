@@ -31,10 +31,12 @@ class WalletForm extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { dispatch } = this.props;
+    const { dispatch, expenses } = this.props;
     const actualCurrency = await getCurrentCurrency();
-    this.setState((prevState) => ({
-      id: prevState.id + 1,
+    let id = 0;
+    const getId = expenses.length === 0 ? id : id += 1;
+    this.setState(() => ({
+      id: getId,
       exchangeRates: actualCurrency,
     }), () => {
       dispatch(expenseForm(this.state));
@@ -136,6 +138,27 @@ const mapStateToProps = (state) => ({
 WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    value: PropTypes.string,
+    description: PropTypes.string,
+    currency: PropTypes.string,
+    method: PropTypes.string,
+    tag: PropTypes.string,
+    exchangeRates: PropTypes.shape({
+      ask: PropTypes.string,
+      bid: PropTypes.string,
+      code: PropTypes.string,
+      codein: PropTypes.string,
+      create_date: PropTypes.string,
+      high: PropTypes.string,
+      low: PropTypes.string,
+      name: PropTypes.string,
+      pctChange: PropTypes.string,
+      timestamp: PropTypes.string,
+      varBid: PropTypes.string,
+    }),
+  })).isRequired,
 };
 
 export default connect(mapStateToProps)(WalletForm);
