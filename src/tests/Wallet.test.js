@@ -4,22 +4,20 @@ import App from '../App';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 
 describe('Testa a tela da carteira', () => {
-  const initialStateMock = {
-    user: {
-      email: '',
-    },
-    wallet: {
-      currencies: [],
-      expenses: [],
-      editor: false,
-      idToEdit: 0,
-    },
-  };
+  test('Testa se está na rota correta', () => {
+    const { history } = renderWithRouterAndRedux(
+      <App />,
+      { initialEntries: ['/carteira'] },
+    );
+
+    const { pathname } = history.location;
+    expect(pathname).toEqual('/carteira');
+  });
 
   test('Testa se possui o título "TrybeWallet"', () => {
     renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/carteira'] },
+      { initialEntries: ['/carteira'] },
     );
 
     const title = screen.getByText('TrybeWallet');
@@ -29,7 +27,7 @@ describe('Testa a tela da carteira', () => {
   test('Testa se possui os inputs necessários para o formulário', () => {
     renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/carteira'] },
+      { initialEntries: ['/carteira'] },
     );
 
     const valueInput = screen.getByTestId('value-input');
@@ -48,22 +46,25 @@ describe('Testa a tela da carteira', () => {
     expect(tagInput).toBeInTheDocument();
   });
 
-  test('Testa se é possível escrever no formulário', () => {
+  test('Testa se é possível escrever na descrição do gasto', () => {
     renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/carteira'] },
+      { initialEntries: ['/carteira'] },
     );
 
     const description = screen.getByTestId('description-input');
-    userEvent.type(description, 'Bolo');
+    userEvent.type(description, 'Almoço ');
 
-    expect(description).toHaveValue('Bolo');
+    expect(description).toHaveValue('Almoço ');
+
+    userEvent.type(description, 'no restaurante');
+    expect(description).toHaveValue('Almoço no restaurante');
   });
 
   test('Testa se renderiza as opções de método e categoria da despesa', () => {
     renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/carteira'] },
+      { initialEntries: ['/carteira'] },
     );
 
     const options = screen.getAllByRole('option');
@@ -73,7 +74,7 @@ describe('Testa a tela da carteira', () => {
   test('Testa se a moeda para a conversão no header é "BRL"', () => {
     renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/carteira'] },
+      { initialEntries: ['/carteira'] },
     );
 
     const getCoin = screen.getByTestId('header-currency-field');
@@ -83,7 +84,7 @@ describe('Testa a tela da carteira', () => {
   test('Testa se é possível selecionar o método de pagamento e a tag corretamente', () => {
     renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/carteira'] },
+      { initialEntries: ['/carteira'] },
     );
 
     const select = screen.getAllByRole('combobox');

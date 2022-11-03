@@ -7,22 +7,11 @@ describe('Testa a tela de Login', () => {
   const email = 'email@email.com';
   const password = '123456';
   const emailTestId = 'email-input';
-  const initialStateMock = {
-    user: {
-      email: '',
-    },
-    wallet: {
-      currencies: [],
-      expenses: [],
-      editor: false,
-      idToEdit: 0,
-    },
-  };
 
   test('Se a tela inicial é renderizada na página de Login', () => {
     renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/'] },
+      { initialEntries: ['/'] },
     );
 
     const loginTitle = screen.getByRole('heading', { level: 1 });
@@ -38,7 +27,7 @@ describe('Testa a tela de Login', () => {
   test('Testa se é possível digitar no campo de email', () => {
     renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/'] },
+      { initialEntries: ['/'] },
     );
 
     const inputEmail = screen.getByTestId(emailTestId);
@@ -50,7 +39,7 @@ describe('Testa a tela de Login', () => {
   test('Testa se ao logar é redirecionado para a página da carteira', () => {
     const { history } = renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/'] },
+      { initialEntries: ['/'] },
     );
 
     const inputEmail = screen.getByTestId(emailTestId);
@@ -69,7 +58,7 @@ describe('Testa a tela de Login', () => {
   test('Testa se o email logado aparece corretamente na tela da carteira', () => {
     renderWithRouterAndRedux(
       <App />,
-      { initialState: initialStateMock, initialEntries: ['/'] },
+      { initialEntries: ['/'] },
     );
 
     const inputEmail = screen.getByTestId(emailTestId);
