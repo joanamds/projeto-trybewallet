@@ -9,8 +9,8 @@ class Header extends Component {
     const getTotalValue = getExpenses.map((expense) => {
       const { exchangeRates } = expense;
       const getValues = Object.values(exchangeRates);
-      const getCurrency = getValues.find((value) => value.code === expense.currency);
-      const currencyValue = Number(getCurrency.ask);
+      const getCurr = getValues.find((value) => value.code === expense.currency);
+      const currencyValue = Number(getCurr.ask);
       const value = expense.value * currencyValue;
       const finalValue = Number(value.toFixed(2));
       return finalValue;

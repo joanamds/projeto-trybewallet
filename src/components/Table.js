@@ -38,7 +38,7 @@ class Table extends Component {
                       { numberValue.toFixed(2) }
                     </td>
                     <td>
-                      { getCurrency.name }
+                      { getCurr.name }
                     </td>
                     <td>
                       { currencyValue.toFixed(2) }
