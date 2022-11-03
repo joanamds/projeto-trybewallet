@@ -4,6 +4,7 @@ import App from '../App';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 
 describe('Testa a tela da carteira', () => {
+  const descriptionInput = 'description-input';
   test('Testa se está na rota correta', () => {
     const { history } = renderWithRouterAndRedux(
       <App />,
@@ -33,8 +34,8 @@ describe('Testa a tela da carteira', () => {
     const valueInput = screen.getByTestId('value-input');
     expect(valueInput).toBeInTheDocument();
 
-    const descriptionInput = screen.getByTestId('description-input');
-    expect(descriptionInput).toBeInTheDocument();
+    const description = screen.getByTestId(descriptionInput);
+    expect(description).toBeInTheDocument();
 
     const currencyInput = screen.getByTestId('currency-input');
     expect(currencyInput).toBeInTheDocument();
@@ -52,7 +53,7 @@ describe('Testa a tela da carteira', () => {
       { initialEntries: ['/carteira'] },
     );
 
-    const description = screen.getByTestId('description-input');
+    const description = screen.getByTestId(descriptionInput);
     userEvent.type(description, 'Almoço ');
 
     expect(description).toHaveValue('Almoço ');
@@ -100,5 +101,33 @@ describe('Testa a tela da carteira', () => {
 
     expect(select[1]).toHaveValue('Dinheiro');
     expect(select[2]).toHaveValue('Alimentação');
+  });
+
+  test('Testa se é possível adicionar um gasto', async () => {
+    renderWithRouterAndRedux(
+      <App />,
+      { initialEntries: ['/carteira'] },
+    );
+
+    const button = screen.getByRole('button');
+
+    const description = screen.getByTestId(descriptionInput);
+    userEvent.type(description, 'Carteira');
+    userEvent.click(button);
+
+    const descriptionAdded = await screen.findByText('Carteira');
+
+    expect(descriptionAdded).toBeInTheDocument();
+  });
+
+  test('Testa se renderiza as moedas corretamente', async () => {
+    renderWithRouterAndRedux(
+      <App />,
+      { initialEntries: ['/carteira'] },
+    );
+
+    const coin = await screen.findByText('USD');
+
+    expect(coin).toBeInTheDocument();
   });
 });
