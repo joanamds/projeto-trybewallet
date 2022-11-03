@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { deleteExpense } from '../redux/actions';
 
 class Table extends Component {
   render() {
-    const { expenses } = this.props;
+    const { expenses, dispatch } = this.props;
     const expensesArray = [...expenses];
     const tableHeaders = ['Descrição', 'Tag', 'Método de pagamento', 'Valor', 'Moeda',
       'Câmbio utilizado', 'Valor convertido', 'Moeda de conversão', 'Editar/Excluir'];
@@ -51,7 +52,13 @@ class Table extends Component {
                     </td>
                     <td>
                       <button type="button" data-testid="edit-btn">Editar</button>
-                      <button type="button" data-testid="delete-btn">Excluir</button>
+                      <button
+                        onClick={ () => dispatch(deleteExpense(expense.id)) }
+                        type="button"
+                        data-testid="delete-btn"
+                      >
+                        Excluir
+                      </button>
                     </td>
                   </tr>
                 </tbody>
@@ -63,6 +70,7 @@ class Table extends Component {
 }
 
 Table.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     value: PropTypes.string,

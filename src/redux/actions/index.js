@@ -6,6 +6,7 @@ import getCurrentCurrency from '../../services/economyAPI';
 export const USER_FORM = 'USER_FORM';
 export const FETCH_CURRENCY = 'FETCH_CURRENCY';
 export const EXPENSE_FORM = 'EXPENSE_FORM';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 export const userForm = (payload) => ({
   type: USER_FORM,
@@ -20,6 +21,11 @@ export const fetchCurrency = (currencies) => ({
 export const expenseForm = (payload) => ({
   type: EXPENSE_FORM,
   expenses: payload,
+});
+
+export const deleteExpense = (id) => ({
+  type: DELETE_EXPENSE,
+  payload: id,
 });
 
 const fetchCurrentCurrency = async (dispatch) => {
