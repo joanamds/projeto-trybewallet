@@ -120,6 +120,7 @@ class WalletForm extends Component {
           </select>
         </label>
         <button
+          data-testid="submit-form"
           onClick={ this.handleSubmit }
           type="submit"
         >

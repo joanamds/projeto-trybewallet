@@ -79,4 +79,25 @@ describe('Testa a tela da carteira', () => {
     const getCoin = screen.getByTestId('header-currency-field');
     expect(getCoin).toHaveTextContent('BRL');
   });
+
+  test('Testa se é possível selecionar o método de pagamento e a tag corretamente', () => {
+    renderWithRouterAndRedux(
+      <App />,
+      { initialState: initialStateMock, initialEntries: ['/carteira'] },
+    );
+
+    const select = screen.getAllByRole('combobox');
+
+    userEvent.selectOptions(
+      select[1],
+      screen.getByRole('option', { name: 'Dinheiro' }),
+    );
+    userEvent.selectOptions(
+      select[2],
+      screen.getByRole('option', { name: 'Alimentação' }),
+    );
+
+    expect(select[1]).toHaveValue('Dinheiro');
+    expect(select[2]).toHaveValue('Alimentação');
+  });
 });

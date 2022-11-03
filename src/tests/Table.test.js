@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import App from '../App';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
+import mockData from './helpers/mockData';
 
 describe('Testa o componente Table', () => {
   const tableHeaders = ['Descrição', 'Tag', 'Método de pagamento', 'Valor', 'Moeda',
@@ -9,17 +9,17 @@ describe('Testa o componente Table', () => {
   // const email = 'email@email.com';
   // const password = '123456';
   // const emailTestId = 'email-input';
-  const initialStateMock = {
+  const initialStateMock = [{
     user: {
       email: '',
     },
     wallet: {
-      currencies: [],
+      currencies: [mockData],
       expenses: [],
       editor: false,
       idToEdit: 0,
     },
-  };
+  }];
 
   test('Se a tabela possui os cabeçalhos corretos', () => {
     renderWithRouterAndRedux(
