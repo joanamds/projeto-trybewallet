@@ -32,6 +32,7 @@ class WalletForm extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { dispatch, expenses } = this.props;
+    console.log('entrei no else');
     let id = 0;
     const actualCurrency = await getCurrentCurrency();
     const getId = expenses.length === 0 ? id : id += 1;
@@ -49,6 +50,26 @@ class WalletForm extends Component {
       });
     });
   };
+
+  // handleEdit = (event) => {
+  //   event.preventDefault();
+  //   const { dispatch, expenses, idToEdit } = this.props;
+  //   const expenseFound = expenses.find((expense) => expense.id === idToEdit);
+  //   this.setState(() => ({
+  //     id: idToEdit,
+  //     exchangeRates: expenseFound.exchangeRates,
+  //     currency: expenseFound.currency,
+  //   }), () => {
+  //     dispatch(editForm(this.state));
+  //     this.setState({
+  //       value: '',
+  //       description: '',
+  //       currency: 'USD',
+  //       method: 'Dinheiro',
+  //       tag: 'Alimentação',
+  //     });
+  //   });
+  // };
 
   render() {
     const { currencies, editor } = this.props;
@@ -121,7 +142,7 @@ class WalletForm extends Component {
         </label>
         {editor ? (
           <button
-            onClick={ this.handleEdit }
+            onClick={ this.handleSubmit }
             type="submit"
           >
             Editar despesa

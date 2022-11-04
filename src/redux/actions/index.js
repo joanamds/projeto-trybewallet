@@ -8,6 +8,7 @@ export const FETCH_CURRENCY = 'FETCH_CURRENCY';
 export const EXPENSE_FORM = 'EXPENSE_FORM';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const EDIT_FORM = 'EDIT_FORM';
 
 export const userForm = (payload) => ({
   type: USER_FORM,
