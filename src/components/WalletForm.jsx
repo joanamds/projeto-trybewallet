@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { actionFetchCurrentCurrency, expenseForm } from '../redux/actions';
+import { actionFetchCurrentCurrency, expenseForm, editForm } from '../redux/actions';
 import getCurrentCurrency from '../services/economyAPI';
-// editForm
+
+const initialTag = 'Alimentação';
+const initialMethod = 'Dinheiro';
+const initialCurrency = 'USD';
 
 class WalletForm extends Component {
   constructor() {
@@ -13,9 +16,9 @@ class WalletForm extends Component {
       id: 0,
       value: '',
       description: '',
-      currency: 'USD',
-      method: 'Dinheiro',
-      tag: 'Alimentação',
+      currency: initialCurrency,
+      method: initialMethod,
+      tag: initialTag,
       exchangeRates: '',
     };
   }
@@ -44,32 +47,25 @@ class WalletForm extends Component {
       this.setState({
         value: '',
         description: '',
-        currency: 'USD',
-        method: 'Dinheiro',
-        tag: 'Alimentação',
+        currency: initialCurrency,
+        method: initialMethod,
+        tag: initialTag,
       });
     });
   };
 
-  // handleEdit = (event) => {
-  //   event.preventDefault();
-  //   const { dispatch, expenses, idToEdit } = this.props;
-  //   const expenseFound = expenses.find((expense) => expense.id === idToEdit);
-  //   this.setState(() => ({
-  //     id: idToEdit,
-  //     exchangeRates: expenseFound.exchangeRates,
-  //     currency: expenseFound.currency,
-  //   }), () => {
-  //     dispatch(editForm(this.state));
-  //     this.setState({
-  //       value: '',
-  //       description: '',
-  //       currency: 'USD',
-  //       method: 'Dinheiro',
-  //       tag: 'Alimentação',
-  //     });
-  //   });
-  // };
+  handleEdit = (event) => {
+    event.preventDefault();
+    const { dispatch } = this.props;
+    dispatch(editForm(this.state));
+    this.setState({
+      value: '',
+      description: '',
+      currency: initialCurrency,
+      method: initialMethod,
+      tag: initialTag,
+    });
+  };
 
   render() {
     const { currencies, editor } = this.props;
@@ -142,7 +138,7 @@ class WalletForm extends Component {
         </label>
         {editor ? (
           <button
-            onClick={ this.handleSubmit }
+            onClick={ this.handleEdit }
             type="submit"
           >
             Editar despesa

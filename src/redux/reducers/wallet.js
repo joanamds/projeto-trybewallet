@@ -1,6 +1,5 @@
 import { FETCH_CURRENCY, EXPENSE_FORM, DELETE_EXPENSE,
-  EDIT_EXPENSE } from '../actions';
-// EDIT_FORM
+  EDIT_FORM, EDIT_EXPENSE } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -9,6 +8,22 @@ const INITIAL_STATE = {
   editor: false,
   idToEdit: 0,
 };
+
+const expensesHelper = (expenses, id, newExpense) => (
+  expenses.map((expense) => {
+    if (expense.id === id) {
+      return {
+        ...expense,
+        value: newExpense.value,
+        description: newExpense.description,
+        method: newExpense.method,
+        currency: newExpense.currency,
+        tag: newExpense.tag,
+      };
+    }
+    return expense;
+  })
+);
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -35,12 +50,12 @@ const wallet = (state = INITIAL_STATE, action) => {
       editor: true,
     };
   }
-  // case EDIT_FORM:
-  //   return {
-  //     ...state,
-  //     expenses: [action.expenses],
-  //     editor: false,
-  //   };
+  case EDIT_FORM:
+    return {
+      ...state,
+      expenses: expensesHelper(state.expenses, state.idToEdit, action.expenses),
+      editor: false,
+    };
   default:
     return state;
   }

@@ -77,4 +77,26 @@ describe('Testa o componente Table', () => {
 
     expect(button).toHaveTextContent('Editar despesa');
   });
+
+  test('Testa se é possível editar uma despesa', async () => {
+    renderWithRouterAndRedux(
+      <App />,
+      { initialEntries: ['/carteira'] },
+    );
+
+    const button = screen.getByRole('button');
+
+    const description = screen.getByTestId(descriptionInput);
+    userEvent.type(description, 'Celular');
+    userEvent.click(button);
+
+    const buttonEdit = await screen.findByTestId('edit-btn');
+    userEvent.click(buttonEdit);
+
+    userEvent.type(description, 'iPhone');
+    userEvent.click(button);
+
+    const editedText = await screen.findByText('iPhone');
+    expect(editedText).toBeInTheDocument();
+  });
 });
