@@ -1,5 +1,6 @@
 import { FETCH_CURRENCY, EXPENSE_FORM, DELETE_EXPENSE,
   EDIT_EXPENSE } from '../actions';
+// EDIT_FORM
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -34,6 +35,12 @@ const wallet = (state = INITIAL_STATE, action) => {
       editor: true,
     };
   }
+  // case EDIT_FORM:
+  //   return {
+  //     ...state,
+  //     expenses: [action.expenses],
+  //     editor: false,
+  //   };
   default:
     return state;
   }

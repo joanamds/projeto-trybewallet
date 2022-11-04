@@ -25,6 +25,11 @@ export const expenseForm = (payload) => ({
   expenses: payload,
 });
 
+export const editForm = (payload) => ({
+  type: EDIT_FORM,
+  expenses: payload,
+});
+
 export const deleteExpense = (id) => ({
   type: DELETE_EXPENSE,
   payload: id,

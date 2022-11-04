@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { actionFetchCurrentCurrency, expenseForm } from '../redux/actions';
 import getCurrentCurrency from '../services/economyAPI';
+// editForm
 
 class WalletForm extends Component {
   constructor() {
@@ -32,7 +33,6 @@ class WalletForm extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { dispatch, expenses } = this.props;
-    console.log('entrei no else');
     let id = 0;
     const actualCurrency = await getCurrentCurrency();
     const getId = expenses.length === 0 ? id : id += 1;
