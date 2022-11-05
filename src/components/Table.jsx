@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Table, Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { deleteExpense, editExpense } from '../redux/actions';
 
-class Table extends Component {
+class TableContent extends Component {
   render() {
     const { expenses, dispatch } = this.props;
     const expensesArray = [...expenses];
     const tableHeaders = ['Descrição', 'Tag', 'Método de pagamento', 'Valor', 'Moeda',
       'Câmbio utilizado', 'Valor convertido', 'Moeda de conversão', 'Editar/Excluir'];
     return (
-      <table className="table-content">
+      <Table className="table-content">
         <thead>
           <tr>
             { tableHeaders.map((header) => <th key={ header }>{ header }</th>) }
@@ -52,31 +55,33 @@ class Table extends Component {
                   Real
                 </td>
                 <td>
-                  <button
+                  <Button
+                    className="btn btn-info"
                     onClick={ () => dispatch(editExpense(expense.id)) }
                     type="button"
                     data-testid="edit-btn"
                   >
-                    Editar
-                  </button>
-                  <button
+                    <FontAwesomeIcon icon={ faEdit } />
+                  </Button>
+                  <Button
+                    color="danger"
                     onClick={ () => dispatch(deleteExpense(expense.id)) }
                     type="button"
                     data-testid="delete-btn"
                   >
-                    Excluir
-                  </button>
+                    <FontAwesomeIcon icon={ faTrash } />
+                  </Button>
                 </td>
               </tr>
             );
           })}
         </tbody>
-      </table>
+      </Table>
     );
   }
 }
 
-Table.propTypes = {
+TableContent.propTypes = {
   dispatch: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
@@ -105,4 +110,4 @@ const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps)(TableContent);

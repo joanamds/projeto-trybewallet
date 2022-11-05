@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Navbar, NavbarBrand, NavbarText } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faWallet, faCoins } from '@fortawesome/free-solid-svg-icons';
 
 class Header extends Component {
   totalExpenses = () => {
@@ -25,17 +28,25 @@ class Header extends Component {
   render() {
     const { email } = this.props;
     return (
-      <>
-        <p data-testid="email-field">
+      <Navbar
+        className="navbar bg-light"
+      >
+        <NavbarBrand>
+          <FontAwesomeIcon icon={ faWallet } />
+          TrybeWallet
+        </NavbarBrand>
+        <NavbarText data-testid="email-field">
+          <FontAwesomeIcon icon={ faEnvelope } />
           { email }
-        </p>
-        <p data-testid="total-field">
+        </NavbarText>
+        <NavbarText data-testid="total-field">
           { this.totalExpenses() }
-        </p>
-        <p data-testid="header-currency-field">
+        </NavbarText>
+        <NavbarText data-testid="header-currency-field">
+          <FontAwesomeIcon icon={ faCoins } />
           BRL
-        </p>
-      </>
+        </NavbarText>
+      </Navbar>
     );
   }
 }

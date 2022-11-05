@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Input, Label, Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { userForm } from '../redux/actions/index';
 
 class Login extends React.Component {
@@ -38,33 +41,36 @@ class Login extends React.Component {
     return (
       <div className="login-page">
         <h1>Login</h1>
-        <label htmlFor="email">
+        <Label htmlFor="email">
+          <FontAwesomeIcon icon={ faEnvelope } />
           Email
-          <input
+          <Input
             type="email"
             onChange={ this.handleChange }
             name="email"
             data-testid="email-input"
             value={ email }
           />
-        </label>
-        <label htmlFor="password">
+        </Label>
+        <Label htmlFor="password">
+          <FontAwesomeIcon icon={ faLock } />
           Senha
-          <input
+          <Input
             type="password"
             onChange={ this.handleChange }
             name="password"
             value={ password }
             data-testid="password-input"
           />
-        </label>
-        <button
+        </Label>
+        <Button
+          className="btn btn-primary"
           type="submit"
           disabled={ !this.isValid() }
           onClick={ this.handleLogin }
         >
           Entrar
-        </button>
+        </Button>
       </div>
     );
   }
