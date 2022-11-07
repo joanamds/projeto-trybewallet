@@ -171,6 +171,7 @@ const mapStateToProps = (state) => ({
 });
 
 WalletForm.propTypes = {
+  // idToEdit: PropTypes.number.isRequired,
   editor: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
