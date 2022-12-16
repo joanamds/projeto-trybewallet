@@ -6,7 +6,7 @@ A estilização foi feita com a biblioteca [Bootstrap](https://getbootstrap.com)
 
 ### Gif mostrando a aplicação
 
-<img src="https://user-images.githubusercontent.com/106452876/208130825-b7570d74-1e29-455f-8c19-12e4ad8d5c77.gif" />
+<img src="https://user-images.githubusercontent.com/106452876/208130825-b7570d74-1e29-455f-8c19-12e4ad8d5c77.gif" alt="gif demonstrando a aplicação trybewallet" />
 
 
 <!-- Olá, Tryber!
