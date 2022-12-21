@@ -4,7 +4,8 @@ Para fixar o conteúdo de Redux, nos foi proposto este desafio no módulo de fro
 
 A estilização foi feita com a biblioteca [Bootstrap](https://getbootstrap.com). 
 
-### Gif mostrando a aplicação
+[Clique aqui para ver a aplicação](https://joanamds.github.io/projeto-trybewallet/)
+
 ![TrybeWallet (1)](https://user-images.githubusercontent.com/106452876/208136578-7f7c4002-4037-44ba-9df7-1469fca51e06.gif)
 
 
