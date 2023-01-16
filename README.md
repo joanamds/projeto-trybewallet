@@ -8,7 +8,26 @@ A estilização foi feita com a biblioteca [Bootstrap](https://getbootstrap.com)
 
 ![TrybeWallet (1)](https://user-images.githubusercontent.com/106452876/208136578-7f7c4002-4037-44ba-9df7-1469fca51e06.gif)
 
+## Instalando Dependências
+> Frontend
+```bash
+cd src/
+npm install
+``` 
+## Executando aplicação
+* Para rodar o front-end:
 
+  ```
+    cd src/ && npm start
+  ```
+
+## Executando Testes
+
+* Para rodar todos os testes:
+
+  ```
+    npm test
+  ```
 
 <!-- Olá, Tryber!
 Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
