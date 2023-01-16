@@ -2,6 +2,12 @@
 
 Para fixar o conteúdo de Redux, nos foi proposto este desafio no módulo de front-end na Trybe. Criar uma aplicação que salva os gastos do usuário e converte tudo para uma única moeda (no caso foi escolhida como base a moeda BRL (Real Brasileiro)). Para obter as informações da cotação, nomes de moedas e outros dados sobre as moedas utilizamos a API de [Cotações de Moedas](https://docs.awesomeapi.com.br/api-de-moedas).
 
+## Tecnologias usadas
+
+Front-end:
+> Desenvolvido usando: React, Redux, CSS3, HTML5
+
+## Estilização
 A estilização foi feita com a biblioteca [Bootstrap](https://getbootstrap.com). 
 
 [Clique aqui para ver a aplicação](https://joanamds.github.io/projeto-trybewallet/)
