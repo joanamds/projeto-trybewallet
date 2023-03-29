@@ -1,4 +1,4 @@
-#  :dollar: Projeto TrybeWallet :dollar:
+# Projeto TrybeWallet :dollar:
 
 Para fixar o conteúdo de Redux, nos foi proposto este desafio no módulo de front-end na Trybe. Criar uma aplicação que salva os gastos do usuário e converte tudo para uma única moeda (no caso foi escolhida como base a moeda BRL (Real Brasileiro)). Para obter as informações da cotação, nomes de moedas e outros dados sobre as moedas utilizamos a API de [Cotações de Moedas](https://docs.awesomeapi.com.br/api-de-moedas).
 
